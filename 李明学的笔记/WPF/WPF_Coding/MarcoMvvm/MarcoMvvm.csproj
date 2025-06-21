@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="BindingManualCollection\UC_BindingManualCollection.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BindingManualConverter\UC_BindingManualConverter.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BindingRelativeSource\UC_BindingRelativeSource.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BindingAnotherControl\UC_BindingAnotherControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BindingStatic\UC_BindingStatic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

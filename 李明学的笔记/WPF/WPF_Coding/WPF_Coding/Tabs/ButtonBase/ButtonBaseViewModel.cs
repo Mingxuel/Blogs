@@ -52,6 +52,16 @@ namespace WPF_Coding.Tabs.ButtonBase
             }
         }
 
+        public double _height = 100;
+        public double Height
+        {
+            get { return _height; }
+            set {
+                _height = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Member> Members { get; set; } = new()
         {
             new Member() { Name = "PS", ID="1" }

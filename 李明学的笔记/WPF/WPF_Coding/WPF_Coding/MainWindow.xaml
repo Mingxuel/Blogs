@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Coding"
         xmlns:vm="clr-namespace:WPF_Coding.Tabs.ButtonBase"
+        xmlns:ccontrol="clr-namespace:WPF_Coding.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
@@ -29,10 +30,12 @@
             <TabItem Header="UIElement">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="185*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="272*"/>
+                        <ColumnDefinition Width="478*"/>
+                        <ColumnDefinition Width="478*"/>
+                        <ColumnDefinition Width="478*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -193,8 +196,22 @@
                     <!--#endregion-->
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
-                <Grid/>
+            <TabItem Header="CustomControl">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ccontrol:UC_CustomControl Grid.Row="0" Grid.Column="0" Width="160" Height="48"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

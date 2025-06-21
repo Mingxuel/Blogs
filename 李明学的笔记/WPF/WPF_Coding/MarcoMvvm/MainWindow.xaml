@@ -1,0 +1,25 @@
+﻿<Window x:Class="MarcoMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarcoMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920" Background="Gray">
+    <Grid x:Name="MarcoBox">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" x:Name="ButtonPool">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="10" />
+                </Style>
+            </WrapPanel.Resources>
+        </WrapPanel>
+        <Border Grid.Row="1" BorderThickness="2" BorderBrush="BlueViolet">
+            <Grid x:Name="WindowPool"/>
+        </Border>
+    </Grid>
+</Window>
