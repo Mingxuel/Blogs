@@ -15,6 +15,9 @@
     <Compile Update="BindingManualConverter\UC_BindingManualConverter.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="BindingManualMultiConverter\UC_BindingManualMultiConverter.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="BindingRelativeSource\UC_BindingRelativeSource.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

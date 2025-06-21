@@ -27,6 +27,7 @@ namespace MarcoMVVM
             "UC_BindingRelativeSource", 
             "UC_BindingManualCollection",
             "UC_BindingManualConverter",
+            "UC_BindingManualMultiConverter"
         };
 
         public MainWindow()
@@ -70,6 +71,9 @@ namespace MarcoMVVM
                     return;
                 case "UC_BindingManualConverter":
                     WindowPool.Children.Add(new UC_BindingManualConverter());
+                    return;
+                case "UC_BindingManualMultiConverter":
+                    WindowPool.Children.Add(new UC_BindingManualMultiConverter());
                     return;
             }
         }
