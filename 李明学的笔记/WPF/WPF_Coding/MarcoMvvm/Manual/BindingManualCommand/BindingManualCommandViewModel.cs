@@ -12,8 +12,11 @@ namespace MarcoMVVM
     {
         public ICommand NoParamCommand { get; }
         public ICommand ParamCommand { get; }
+        public ICommand TemplateParamCommand {  get; }
+        public ICommand TemplateMultiParamCommand { get; }
 
-        public string MarcoInput { get; set; }
+        public string ID { get; set; }
+        public string NAME { get; set; }
 
         public BindingManualCommandViewModel()
         {
@@ -26,23 +29,40 @@ namespace MarcoMVVM
             ParamCommand = new RelayCommand(
                 param => ParamFunc(param),  // 执行逻辑
                 param => CanParamFunc(param));
+
+            TemplateParamCommand = new RelayTemplateCommand<string>(
+                param => TemplateParamFunc(param)
+            );
+            TemplateMultiParamCommand = new RelayTemplateCommand<BindingManualCommandModel.UserInfo>(
+                param => TemplateMultiParamFunc(param)
+            );
         }
 
         private void NoParamFunc()
         {
-            MarcoInput = "Hello World"; //MarcoInput因为没有双向绑定，因此不会在UI上体现
-            MessageBox.Show($"{MarcoInput}");
+            ID = "Hello World"; //MarcoInput因为没有双向绑定，因此不会在UI上体现
+            MessageBox.Show($"{ID}");
         }
 
         private void ParamFunc(object param)
         {
-            MessageBox.Show($"{MarcoInput}");
+            MessageBox.Show($"{param}");
         }
 
         private bool CanParamFunc(object param)
         {
             // 判断是否可以删除
             return param != null && !string.IsNullOrEmpty(param.ToString());
+        }
+
+        private void TemplateParamFunc(string param)
+        {
+            MessageBox.Show($"{param}");
+        }
+
+        private void TemplateMultiParamFunc(BindingManualCommandModel.UserInfo param)
+        {
+            MessageBox.Show($"ID={param.ID} NAME={param.NAME}");
         }
     }
 }

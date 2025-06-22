@@ -8,16 +8,35 @@
         Title="MainWindow" Height="1080" Width="1920" Background="Gray">
     <Grid x:Name="MarcoBox">
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="240"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0" x:Name="ButtonPool">
-            <WrapPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Margin" Value="10" />
-                </Style>
-            </WrapPanel.Resources>
-        </WrapPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="MANUAL: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
+            <WrapPanel Grid.Row="0" Grid.Column="1" x:Name="ManualButtonPool">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10" />
+                    </Style>
+                </WrapPanel.Resources>
+            </WrapPanel>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="TOOLKIT: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
+            <WrapPanel Grid.Row="1" Grid.Column="1" x:Name="ToolkitButtonPool">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10" />
+                    </Style>
+                </WrapPanel.Resources>
+            </WrapPanel>
+        </Grid>
         <Border Grid.Row="1" BorderThickness="2" BorderBrush="BlueViolet">
             <Grid x:Name="WindowPool"/>
         </Border>

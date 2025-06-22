@@ -1,5 +1,4 @@
-﻿using MarcoMvvm.Manual;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -19,7 +18,7 @@ namespace MarcoMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> buttons = new List<string>() { 
+        List<string> manual_buttons = new List<string>() { 
             "UC_BindingManualCommand", 
             "UC_BindingManualData", 
             "UC_BindingStatic" , 
@@ -27,25 +26,45 @@ namespace MarcoMVVM
             "UC_BindingRelativeSource", 
             "UC_BindingManualCollection",
             "UC_BindingManualConverter",
-            "UC_BindingManualMultiConverter"
+            "UC_BindingManualMultiConverter",
+            "UC_BindingManualValidationRule",
+            "UC_BindingEventCommand",
+        };
+
+        List<string> toolkit_buttons = new List<string>() {
+            "UC_BindingData",
+            "UC_BindingCommand",
+            "UC_BindingMessanger",
+            "UC_BindingMessangerProperty",
+            "UC_BindingMessangerRequest"
         };
 
         public MainWindow()
         {
             InitializeComponent();
 
-            foreach(string button in buttons)
+            foreach(string button in manual_buttons)
             {
                 Button bt = new Button();
                 bt.Content = button;
-                bt.Width = 180;
+                bt.Width = 218;
                 bt.Height = 40;
-                bt.Click += Bt_Click;
-                ButtonPool.Children.Add(bt);
+                bt.Click += ManualButtonClick;
+                ManualButtonPool.Children.Add(bt);
+            }
+
+            foreach (string button in toolkit_buttons)
+            {
+                Button bt = new Button();
+                bt.Content = button;
+                bt.Width = 218;
+                bt.Height = 40;
+                bt.Click += ManualButtonClick;
+                ToolkitButtonPool.Children.Add(bt);
             }
         }
 
-        private void Bt_Click(object sender, RoutedEventArgs e)
+        private void ManualButtonClick(object sender, RoutedEventArgs e)
         {
             WindowPool.Children.Clear();
             string uc = ((Button)sender).Content.ToString();
@@ -75,6 +94,27 @@ namespace MarcoMVVM
                 case "UC_BindingManualMultiConverter":
                     WindowPool.Children.Add(new UC_BindingManualMultiConverter());
                     return;
+                case "UC_BindingManualValidationRule":
+                    WindowPool.Children.Add(new UC_BindingManualValidationRule());
+                    return;
+                case "UC_BindingEventCommand":
+                    WindowPool.Children.Add(new UC_BindingEventCommand());
+                    return;
+                case "UC_BindingData":
+                    WindowPool.Children.Add(new UC_BindingData());
+                    return;
+                case "UC_BindingCommand":
+                    WindowPool.Children.Add(new UC_BindingCommand());
+                    return;
+                case "UC_BindingMessanger":
+                    WindowPool.Children.Add(new UC_BindingMessanger());
+                    return;
+                case "UC_BindingMessangerProperty":
+                    WindowPool.Children.Add(new UC_BindingMessangerProperty());
+                    return;
+                case "UC_BindingMessangerRequest":
+                    WindowPool.Children.Add(new UC_BindingMessangerRequest());
+                    return;                    
             }
         }
     }

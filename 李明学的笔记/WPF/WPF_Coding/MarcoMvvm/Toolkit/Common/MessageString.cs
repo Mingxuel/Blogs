@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarcoMvvm.Manual.Mvvm
+namespace MarcoMVVM
 {
-    internal class ManualModel
-    {
-    }
+    public record MessageString(string message);
 }

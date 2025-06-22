@@ -9,22 +9,39 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="BindingManualCollection\UC_BindingManualCollection.xaml.cs">
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Manual\BindingManualCollection\UC_BindingManualCollection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="BindingManualConverter\UC_BindingManualConverter.xaml.cs">
+    <Compile Update="Manual\BindingManualConverter\UC_BindingManualConverter.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="BindingManualMultiConverter\UC_BindingManualMultiConverter.xaml.cs">
+    <Compile Update="Manual\BindingManualMultiConverter\UC_BindingManualMultiConverter.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="BindingRelativeSource\UC_BindingRelativeSource.xaml.cs">
+    <Compile Update="Manual\BindingRelativeSource\UC_BindingRelativeSource.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="BindingAnotherControl\UC_BindingAnotherControl.xaml.cs">
+    <Compile Update="Manual\BindingAnotherControl\UC_BindingAnotherControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="BindingStatic\UC_BindingStatic.xaml.cs">
+    <Compile Update="Manual\BindingStatic\UC_BindingStatic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Toolkit\BindingMessangerRequest\UC_BindingMessangerRequestReceiver.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Toolkit\BindingMessangerRequest\UC_BindingMessangerRequestSender.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Toolkit\BindingMessangerProperty\UC_BindingMessangerPropertyReceiver.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Toolkit\BindingMessangerProperty\UC_BindingMessangerPropertySender.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
