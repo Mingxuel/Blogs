@@ -37,7 +37,8 @@ namespace MarcoMVVM
             "UC_BindingMessanger",
             "UC_BindingMessangerProperty",
             "UC_BindingMessangerRequest",
-            "UC_Validation"
+            "UC_Validation",
+            "UC_JsonSerializer",
         };
 
         public MainWindow()
@@ -118,7 +119,10 @@ namespace MarcoMVVM
                     return;
                 case "UC_Validation":
                     WindowPool.Children.Add(new UC_Validation());
-                    return;       
+                    return;
+                case "UC_JsonSerializer":
+                    WindowPool.Children.Add(new UC_JsonSerializer());
+                    return;
             }
         }
     }

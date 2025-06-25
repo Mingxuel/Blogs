@@ -32,6 +32,11 @@
     <Compile Update="Manual\BindingStatic\UC_BindingStatic.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Properties\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
     <Compile Update="Toolkit\BindingMessangerRequest\UC_BindingMessangerRequestReceiver.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +49,18 @@
     <Compile Update="Toolkit\BindingMessangerProperty\UC_BindingMessangerPropertySender.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Lang.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Lang.zh-CN.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
