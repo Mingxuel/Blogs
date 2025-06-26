@@ -6,50 +6,55 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Diagnostics.Metrics;
+using CommunityToolkit.Mvvm.Input;
+using System.Reflection;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace MarcoMVVM
 {
-    public class MainWindowViewModel
+    public partial class MainWindowViewModel : ObservableObject
     {
-        // 数据集合
-        public ObservableCollection<string> Items { get; set; }
-        public string NewItem { get; set; }
+        [ObservableProperty]
+        private ObservableCollection<ButtonModel> manualButtons = new ObservableCollection<ButtonModel>();
+        [ObservableProperty]
+        private ObservableCollection<ButtonModel> toolkitButtons = new ObservableCollection<ButtonModel>();
 
-        // 命令属性
-        public ICommand AddItemCommand { get; private set; }
-        public ICommand ClearItemsCommand { get; private set; }
+        [ObservableProperty]
+        private UserControl? currentContent;
 
-        public MainWindowViewModel()
+        [RelayCommand]
+        public void Window_Loaded()
         {
-            // 初始化数据
-            Items = new ObservableCollection<string>();
-
-            // 初始化命令 - 带参数的命令
-            AddItemCommand = new RelayCommand(
-                parameter => AddItem((string)parameter),  // 执行方法
-                parameter => !string.IsNullOrEmpty((string)parameter)  // 可执行判断
-            );
-
-            // 初始化命令 - 无参数的命令
-            ClearItemsCommand = new RelayCommand(
-                parameter => ClearItems(),
-                parameter => Items.Count > 0
-            );
-        }
-
-        private void AddItem(string item)
-        {
-            Items.Add(item);
-            NewItem = string.Empty; // 清空输入框
-        }
-
-        private void ClearItems()
-        {
-            if (MessageBox.Show("确定要清空列表吗？", "确认",
-                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            foreach(var content in Config.ManualButtons)
             {
-                Items.Clear();
+                var button = new ButtonModel
+                {
+                    Content = content,
+                    ButtonClick = new RelayCommand<object>(param => ButtonClickCommand(param))
+                };
+                ManualButtons.Add(button);
             }
+            foreach (var content in Config.ToolkitButtons)
+            {
+                var button = new ButtonModel
+                {
+                    Content = content,
+                    ButtonClick = new RelayCommand<object>(param => ButtonClickCommand(param))
+                };
+                ToolkitButtons.Add(button);
+            }
+        }
+
+        public void ButtonClickCommand(object? buttonName)
+        {
+            if (buttonName == null) return;
+            Type? type = Type.GetType("MarcoMVVM." + buttonName.ToString());
+            if (type == null) return;
+            object? control = Activator.CreateInstance(type);
+            if (control is UserControl) CurrentContent = (UserControl)control;
         }
     }
 }

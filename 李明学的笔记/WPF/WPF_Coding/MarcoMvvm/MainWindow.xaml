@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarcoMVVM"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" Background="Gray">
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="Loaded">
+            <i:InvokeCommandAction Command="{Binding Window_LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid x:Name="MarcoBox">
         <Grid.RowDefinitions>
             <RowDefinition Height="240"/>
@@ -21,24 +27,38 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="MANUAL: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
-            <WrapPanel Grid.Row="0" Grid.Column="1" x:Name="ManualButtonPool">
-                <WrapPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Margin" Value="10" />
-                    </Style>
-                </WrapPanel.Resources>
+            <WrapPanel Grid.Row="0" Grid.Column="1">
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding ManualButtons}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Margin="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Content}" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="233" Height="40"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="TOOLKIT: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
-            <WrapPanel Grid.Row="1" Grid.Column="1" x:Name="ToolkitButtonPool">
-                <WrapPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Margin" Value="10" />
-                    </Style>
-                </WrapPanel.Resources>
+            <WrapPanel Grid.Row="1" Grid.Column="1">
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding ToolkitButtons}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Margin="10" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Content}" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="233" Height="40"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </Grid>
         <Border Grid.Row="1" BorderThickness="2" BorderBrush="BlueViolet">
-            <Grid x:Name="WindowPool"/>
+            <ContentControl Content="{Binding CurrentContent}" Margin="0" />
         </Border>
     </Grid>
 </Window>

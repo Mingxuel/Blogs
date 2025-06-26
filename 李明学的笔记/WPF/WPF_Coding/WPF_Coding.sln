@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Coding", "WPF_Coding\WPF_Coding.csproj", "{888C27B3-94DC-4378-9F55-BE25C4C01B9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFControlLibrary", "WPFControlLibrary\WPFControlLibrary.csproj", "{42FF4C72-01A2-4043-99B9-EE73F0E8F02E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFControlLibrary", "WPFControlLibrary\WPFControlLibrary.csproj", "{42FF4C72-01A2-4043-99B9-EE73F0E8F02E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarcoMvvm", "MarcoMvvm\MarcoMvvm.csproj", "{19C4215E-C7F8-4387-85CC-0F9753B2C535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarcoMvvm", "MarcoMvvm\MarcoMvvm.csproj", "{19C4215E-C7F8-4387-85CC-0F9753B2C535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
