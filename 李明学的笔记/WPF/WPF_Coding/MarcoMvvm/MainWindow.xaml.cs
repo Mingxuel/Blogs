@@ -39,6 +39,7 @@ namespace MarcoMVVM
             "UC_BindingMessangerRequest",
             "UC_Validation",
             "UC_JsonSerializer",
+            "UC_TaskObject",
         };
 
         public MainWindow()
@@ -122,6 +123,9 @@ namespace MarcoMVVM
                     return;
                 case "UC_JsonSerializer":
                     WindowPool.Children.Add(new UC_JsonSerializer());
+                    return;
+                case "UC_TaskObject":
+                    WindowPool.Children.Add(new UC_TaskObject());
                     return;
             }
         }

@@ -12,16 +12,26 @@ namespace MarcoMVVM
     public partial class BindingMessangerPropertyReceiverViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string receiveMessage = "";
+        private string receiveMessageA = "";
+        [ObservableProperty]
+        private string receiveMessageB = "";
+
+        private string tokenA = "A";
+        private string tokenB = "B";
 
         public BindingMessangerPropertyReceiverViewModel()
         {
-            WeakReferenceMessenger.Default.Register<PropertyChangedMessage<string>>(this, Receive);
+            WeakReferenceMessenger.Default.Register<PropertyChangedMessage<string>, string>(this, tokenA, ReceiveA);
+            WeakReferenceMessenger.Default.Register<PropertyChangedMessage<string>, string>(this, tokenB, ReceiveB);
         }
 
-        private void Receive(object recipient, PropertyChangedMessage<string> message)
+        private void ReceiveA(object recipient, PropertyChangedMessage<string> message)
         {
-            ReceiveMessage = message.NewValue;
+            ReceiveMessageA = message.NewValue;
+        }
+        private void ReceiveB(object recipient, PropertyChangedMessage<string> message)
+        {
+            ReceiveMessageB = message.NewValue;
         }
     }
 }
