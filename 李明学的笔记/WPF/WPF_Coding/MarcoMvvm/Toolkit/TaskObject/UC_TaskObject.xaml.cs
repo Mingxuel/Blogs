@@ -1,6 +1,8 @@
-﻿using System.Configuration;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,13 +16,13 @@ using System.Windows.Shapes;
 namespace MarcoMVVM
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// UC_TaskObject.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UC_TaskObject : UserControl
     {
-        public MainWindow()
+        public UC_TaskObject()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
         }
+    }
 }

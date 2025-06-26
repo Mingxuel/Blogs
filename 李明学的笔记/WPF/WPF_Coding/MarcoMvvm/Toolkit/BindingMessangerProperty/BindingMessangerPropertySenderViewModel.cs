@@ -12,6 +12,12 @@ namespace MarcoMVVM
 {
     public partial class BindingMessangerPropertySenderViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private bool isTokenAEnabled;
+
+        [ObservableProperty]
+        private bool isTokenBEnabled;
+
         private string sendMessage = "";
         public string SendMessage
         {
@@ -20,7 +26,19 @@ namespace MarcoMVVM
             {
                 if (SetProperty(ref sendMessage, value))
                 {
-                    WeakReferenceMessenger.Default.Send(new PropertyChangedMessage<string>(this, nameof(SendMessage), default, value));
+                    if (IsTokenAEnabled && !IsTokenBEnabled)
+                    {
+                        WeakReferenceMessenger.Default.Send(new PropertyChangedMessage<string>(this, nameof(SendMessage), default, "A "+value), "A");
+                    }
+                    else if (!IsTokenAEnabled && IsTokenBEnabled)
+                    {
+                        WeakReferenceMessenger.Default.Send(new PropertyChangedMessage<string>(this, nameof(SendMessage), default, "B " + value), "B");
+                    }
+                    else if (IsTokenAEnabled && IsTokenBEnabled)
+                    {
+                        WeakReferenceMessenger.Default.Send(new PropertyChangedMessage<string>(this, nameof(SendMessage), default, "A " + value), "A");
+                        WeakReferenceMessenger.Default.Send(new PropertyChangedMessage<string>(this, nameof(SendMessage), default, "B " + value), "B");
+                    }
                 }
             }
         }

@@ -15,6 +15,8 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Margin="5" Text="{Binding SendMessage, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox Grid.Row="0" Margin="5" Content="Token A" IsChecked="{Binding IsTokenAEnabled}" />
+        <CheckBox Grid.Row="1" Margin="5" Content="Token B" IsChecked="{Binding IsTokenBEnabled}" />
+        <TextBox Grid.Row="2" Margin="5" Text="{Binding SendMessage, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

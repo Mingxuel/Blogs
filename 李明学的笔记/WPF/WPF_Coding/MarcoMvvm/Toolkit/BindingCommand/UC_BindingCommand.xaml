@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MarcoMVVM"
              mc:Ignorable="d" 
-             Width="450" Height="200" BorderThickness="1" BorderBrush="Black">
+             Width="600" Height="200" BorderThickness="1" BorderBrush="Black">
     <UserControl.DataContext>
         <local:BindingCommandViewModel/>
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -31,8 +32,10 @@
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Group2_In}" Height="40" Margin="5"/>
         <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Group2_Out, Mode=OneWay}" Height="40" Margin="5"/>
         <CheckBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="IsEnabled" VerticalAlignment="Center" FontSize="16" Foreground="White" IsChecked="{Binding IsEnabled}"  Margin="5"/>
-        <Button Grid.Row="4" Grid.Column="1" Command="{Binding SyncClickCommand}" Height="40" Content="SYNC" Margin="5" FontSize="14" VerticalAlignment="Center"/>
+        <Button Grid.Row="4" Grid.Column="1" Command="{Binding SyncClickCommand}" CommandParameter="{Binding IsEnabled}" Height="40" Content="SYNC" Margin="5" FontSize="14" VerticalAlignment="Center"/>
         <Button Grid.Row="4" Grid.Column="2" Command="{Binding AsyncClickCommand}" Height="40" Content="ASYNC" Margin="5" FontSize="14" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="4" Grid.Column="3" Content="IsRunning" VerticalAlignment="Center" FontSize="16" Foreground="White" IsChecked="{Binding AsyncClickCommand.IsRunning, Mode=OneWay}" Margin="5"/>
+        <Button Grid.Row="4" Grid.Column="3" Command="{Binding AsyncClickCancelCommand}" Height="40" Content="ASYNC CANCEL" Margin="5" FontSize="14" VerticalAlignment="Center"/>
+        <Button Grid.Row="4" Grid.Column="4" Command="{Binding AsyncContinueClickCommand}" Height="40" Content="ASYNC CONTIN" Margin="5" FontSize="14" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="3" Grid.Column="2" Content="IsRunning" VerticalAlignment="Center" FontSize="16" Foreground="White" IsChecked="{Binding AsyncClickCommand.IsRunning, Mode=OneWay}" Margin="5"/>
     </Grid>
 </UserControl>
