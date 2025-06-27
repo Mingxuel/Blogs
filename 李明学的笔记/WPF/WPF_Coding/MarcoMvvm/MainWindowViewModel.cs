@@ -21,6 +21,8 @@ namespace MarcoMVVM
         private ObservableCollection<ButtonModel> manualButtons = new ObservableCollection<ButtonModel>();
         [ObservableProperty]
         private ObservableCollection<ButtonModel> toolkitButtons = new ObservableCollection<ButtonModel>();
+        [ObservableProperty]
+        private ObservableCollection<ButtonModel> wPFButtons = new ObservableCollection<ButtonModel>();
 
         [ObservableProperty]
         private UserControl? currentContent;
@@ -45,6 +47,15 @@ namespace MarcoMVVM
                     ButtonClick = new RelayCommand<object>(param => ButtonClickCommand(param))
                 };
                 ToolkitButtons.Add(button);
+            }
+            foreach (var content in Config.WPFButtons)
+            {
+                var button = new ButtonModel
+                {
+                    Content = content,
+                    ButtonClick = new RelayCommand<object>(param => ButtonClickCommand(param))
+                };
+                WPFButtons.Add(button);
             }
         }
 

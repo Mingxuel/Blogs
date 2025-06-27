@@ -36,5 +36,9 @@ namespace MarcoMVVM
             "UC_Validation",
             "UC_JsonSerializer",
         };
+
+        public static List<string> WPFButtons = new List<string>() {
+            "CustomPropertyMain",
+        };
     }
 }

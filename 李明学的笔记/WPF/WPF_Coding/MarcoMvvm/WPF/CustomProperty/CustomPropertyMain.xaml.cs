@@ -1,6 +1,8 @@
-﻿using System.Configuration;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,14 +16,14 @@ using System.Windows.Shapes;
 namespace MarcoMVVM
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// CustomPropertyMain.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CustomPropertyMain : UserControl
     {
-        public MainWindow()
+        public CustomPropertyMain()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new CustomPropertyViewModel();
         }
     }
 }
