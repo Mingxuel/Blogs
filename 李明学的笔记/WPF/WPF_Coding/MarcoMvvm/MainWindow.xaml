@@ -6,74 +6,68 @@
         xmlns:local="clr-namespace:MarcoMVVM"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" Background="Gray">
+        Title="MainWindow" Height="1080" Width="1920" Background="Black">
     <i:Interaction.Triggers>
         <i:EventTrigger x:Name="Loaded">
             <i:InvokeCommandAction Command="{Binding Window_LoadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid x:Name="MarcoBox">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="240"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="MANUAL: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
-            <WrapPanel Grid.Row="0" Grid.Column="1">
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding ManualButtons}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" Margin="10" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Content}" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="233" Height="40"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </WrapPanel>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="TOOLKIT: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
-            <WrapPanel Grid.Row="1" Grid.Column="1">
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding ToolkitButtons}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" Margin="10" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Content}" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="233" Height="40"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </WrapPanel>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="WPF: " HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="28"/>
-            <WrapPanel Grid.Row="2" Grid.Column="1">
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding WPFButtons}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" Margin="10" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding Content}" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="233" Height="40"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </WrapPanel>
-        </Grid>
-        <Border Grid.Row="1" BorderThickness="2" BorderBrush="BlueViolet">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.Column="0" Background="Black">
+            <TabItem Header="MANUAL">
+                <WrapPanel Orientation="Horizontal">
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding ManualButtons}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Margin="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Content}" Background="#FF135EEA" Foreground="White" FontWeight="Bold" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="180" Height="40" FontSize="10"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </WrapPanel>
+            </TabItem>
+            <TabItem Header="TOOLKIT">
+                <WrapPanel Orientation="Vertical">
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding ToolkitButtons}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Margin="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Content}" Background="#FF135EEA" Foreground="White" FontWeight="Bold" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="180" Height="40" FontSize="10"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </WrapPanel>
+            </TabItem>
+            <TabItem Header="WPF">
+                <WrapPanel Orientation="Vertical">
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding WPFButtons}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" Margin="10" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Content}" Background="#FF135EEA" Foreground="White" FontWeight="Bold" Command="{Binding ButtonClick}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" Padding="10" Margin="5" Width="180" Height="40" FontSize="10"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </WrapPanel>
+            </TabItem>
+        </TabControl>
+        <Border Grid.Column="1" BorderThickness="2" BorderBrush="#FF135EEA">
             <ContentControl Content="{Binding CurrentContent}" Margin="0" />
         </Border>
     </Grid>

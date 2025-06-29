@@ -39,6 +39,7 @@ namespace MarcoMVVM
 
         public static List<string> WPFButtons = new List<string>() {
             "CustomPropertyMain",
-        };
+			"NavigationMain",
+		};
     }
 }

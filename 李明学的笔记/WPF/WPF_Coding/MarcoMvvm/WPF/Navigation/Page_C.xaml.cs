@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace MarcoMVVM
 {
     /// <summary>
-    /// CustomPropertyMain.xaml 的交互逻辑
+    /// Page_C.xaml 的交互逻辑
     /// </summary>
-    public partial class CustomPropertyMain : UserControl
+    public partial class Page_C : Page
     {
-        public CustomPropertyMain()
+        public Page_C()
         {
             InitializeComponent();
-            this.DataContext = new CustomPropertyMainViewModel();
-        }
+			DataContext = new Page_CViewModel();
+		}
     }
 }
