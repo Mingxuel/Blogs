@@ -38,9 +38,7 @@ namespace Survive
 
         private void InitText()
         {
-            _keywords["二板缩量自选"] = "主板非st，\r\nDAY-0缩量涨停，\r\nDAY-1涨停，\r\nDAY-2非涨停";
             _keywords["二板缩量"] = "主板非st，\r\nDAY-0未涨停，\r\nDAY-1缩量涨停，\r\nDAY-2涨停，\r\nDAY-3非涨停";
-            _keywords["二板放量自选"] = "主板非st，\r\nDAY-0放量涨停，\r\nDAY-1涨停，\r\nDAY-2非涨停";
             _keywords["二板放量"] = "主板非st，\r\nDAY-0未涨停，\r\nDAY-1放量涨停，\r\nDAY-2涨停，\r\nDAY-3非涨停，\r\nDAY-0成交量大于DAY-1成交量，\r\nDAY-0成交量大于DAY-2成交量，\r\nDAY-1振幅大于5%，\r\nDAY-2振幅大于5%";
         }
 
