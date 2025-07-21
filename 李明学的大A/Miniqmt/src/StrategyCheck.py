@@ -5,7 +5,6 @@ from rich.table import Table
 
 console = Console()
 
-\
 def FORMAT_NUMBER(num):
     output = ""
     if num >= 0:

@@ -19,17 +19,17 @@ assert_list = AssertList()
 buy_stack = BuyStack()
 sell_stack = SellStack()
 trader = Trader()
-MA_RATE = 1.00
+MA_RATE = 0.97
 CAN_BUY = False
 
 # 回调函数 ################################################################################################
 def INIT():
     if common.TEST_MODE:
-        assert_list.CASH = 50000.0
-        assert_list.PRE_CASH = 50000.0
+        assert_list.CASH = 1000000.0
+        assert_list.PRE_CASH = 1000000.0
     #assert_list.BOX = 17000
-    assert_list.BOX = 50000
-    assert_list.BOX_COUNT = 2
+    assert_list.BOX = 1000000
+    assert_list.BOX_COUNT = 4
 
 def S_CALLBACK_TICK():
     if common.IS_AUCTION_TIME():
@@ -72,7 +72,7 @@ def B_CALLBACK_1M():
         price_top = common.PRICE_TOP(stock_code, data)
         price_bottom = common.PRICE_BOTTOM(stock_code, data)
         ratio = float(price_open / price_preClose)
-        if ratio >= 1.02 and ratio <= 0.98:
+        if ratio >= 1.02 and ratio <= 0.93:
             return None
         if abs(price_top - price_open) < 0.01 or abs(price_open - price_bottom) < 0.01:
             return None
@@ -89,19 +89,33 @@ def B_CALLBACK_1M():
             buy_stack.PUSH(stock_code, price_close)
 
 def B_AUCTION(): # 集合竞价结束后调用(09:25:03)
+    pass
     global CAN_BUY
     CAN_BUY = False
     stock_list = runtime.B_STOCK_LIST
+    count_win = 0
+    count_lose = 0
+    ratio = 0.0
     for stock_code in stock_list:
         data = common.GET_STOCK_REAL_DATA_FOR_1D(stock_code)
         price_open = float(data["open"]) # 当日开盘价
-        price_top = common.PRICE_TOP(stock_code, data)
-        price_bottom = common.PRICE_BOTTOM(stock_code, data)
-        if abs(price_open - price_bottom) <= 0.01:
-            CAN_BUY = False
-            break
-        if abs(price_open - price_top) <= 0.01:
-            CAN_BUY = True
+        price_preClose = float(data["preClose"]) # 当日开盘价
+        ratio = ratio + (price_open - price_preClose) / price_preClose
+        #price_top = common.PRICE_TOP(stock_code, data)
+        #price_bottom = common.PRICE_BOTTOM(stock_code, data)
+        #if abs(price_open - price_bottom) <= 0.01:
+        #    CAN_BUY = False
+        #    break
+        if price_open > price_preClose:
+            count_win = count_win + 1
+        else:
+            count_lose = count_lose + 1
+    if count_win > count_lose and ratio > 0.1:
+        CAN_BUY = True
+#        if abs(price_open - price_top) <= 0.01:
+#            count = count + 1
+#            if count >=2:
+#                CAN_BUY = True
     # if common.TEST_MODE is not True:
     #     print(f"[B_AUCTION] {common.TIME}")
     # stock_list = runtime.B_STOCK_LIST
