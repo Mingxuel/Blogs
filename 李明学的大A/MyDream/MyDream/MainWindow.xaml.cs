@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -21,8 +22,11 @@ namespace MyDream
     /// </summary>
     public partial class MainWindow : Window
     {
-		private static string _keydays = @"../../../../../Data/Config/KeyDays.config";
+		private const string _url = "https://www.iwencai.com/unifiedwap/result?w=";
+		private static string _keydays_config = @"../../../../../Data/Config/KeyDays.config";
+		private static string _keywords_config = @"../../../../../Data/Config/KeyWords.config";
 		private List<string> _dates = new List<string>();
+		private List<string> _keywords = new List<string>();
 
 		public MainWindow()
         {
@@ -32,49 +36,71 @@ namespace MyDream
 		private void bt_0_0_Click(object sender, RoutedEventArgs e)
 		{
 			//2F
-			string keyword = "主板非st，\r\nD-0非涨停，\r\nD-1放量涨停，\r\nD-2涨停，\r\nD-3未涨停";
+			string keyword = _keywords[0];
 			tb_0_0.Text = Format(keyword, lb_0_0.SelectedIndex);
 			Clipboard.SetText(tb_0_0.Text);
+			OpenWebPage();
 		}
 
 		private void bt_0_1_Click(object sender, RoutedEventArgs e)
 		{
-			//2F GO
-			string keyword = "主板非st，\r\nD-0放量涨停，\r\nD-1涨停，\r\nD-2未涨停";
+			//2F+1
+			string keyword = _keywords[1];
 			tb_0_1.Text = Format(keyword, lb_0_1.SelectedIndex);
 			Clipboard.SetText(tb_0_1.Text);
+			OpenWebPage();
 		}
 
 		private void bt_0_2_Click(object sender, RoutedEventArgs e)
 		{
-			//2F GO
-			string keyword = "主板非st，\r\nD-0放量涨停，\r\nD-1涨停，\r\nD-2未涨停";
+			//2F+2
+			string keyword = _keywords[2];
 			tb_0_2.Text = Format(keyword, lb_0_2.SelectedIndex);
 			Clipboard.SetText(tb_0_2.Text);
+			OpenWebPage();
 		}
 
 		private void bt_1_0_Click(object sender, RoutedEventArgs e)
 		{
 			//2S
-			string keyword = "主板非st，\r\nD-0非涨停，\r\nD-1缩量涨停，\r\nD-2涨停，\r\nD-3未涨停";
+			string keyword = _keywords[3];
 			tb_1_0.Text = Format(keyword, lb_1_0.SelectedIndex);
 			Clipboard.SetText(tb_1_0.Text);
+			OpenWebPage();
 		}
 
 		private void bt_1_1_Click(object sender, RoutedEventArgs e)
 		{
-			//2S GO
-			string keyword = "主板非st，\r\nD-0缩量涨停，\r\nD-1涨停，\r\nD-2未涨停";
+			//2S+1
+			string keyword = _keywords[4];
 			tb_1_1.Text = Format(keyword, lb_1_1.SelectedIndex);
 			Clipboard.SetText(tb_1_1.Text);
+			OpenWebPage();
 		}
 
 		private void bt_1_2_Click(object sender, RoutedEventArgs e)
 		{
-			//2S GO
-			string keyword = "主板非st，\r\nD-0缩量涨停，\r\nD-1涨停，\r\nD-2未涨停";
+			//2S+2
+			string keyword = _keywords[5];
 			tb_1_2.Text = Format(keyword, lb_1_2.SelectedIndex);
 			Clipboard.SetText(tb_1_2.Text);
+			OpenWebPage();
+		}
+
+		private void OpenWebPage()
+		{
+			try
+			{
+				string url = _url + Clipboard.GetText();
+				Process.Start(new ProcessStartInfo(url)
+				{
+					UseShellExecute = true
+				});
+			}
+			catch (Exception ex)
+			{
+				
+			}
 		}
 
 		private string Format(string keyword, int index)
@@ -95,18 +121,33 @@ namespace MyDream
 
 		private void LoadClick(object sender, RoutedEventArgs e)
 		{
-			File.WriteAllText(_keydays, tb_days.Text);
+			File.WriteAllText(_keydays_config, tb_days.Text);
 			UpdateData();
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			string[] keywords = File.ReadAllText(_keywords_config).Split("\r\n");
+
+			_keywords.Add(keywords[0].Replace("，", "，\r\n"));
+			_keywords.Add(keywords[1].Replace("，", "，\r\n"));
+			_keywords.Add(keywords[2].Replace("，", "，\r\n"));
+			_keywords.Add(keywords[3].Replace("，", "，\r\n"));
+			_keywords.Add(keywords[4].Replace("，", "，\r\n"));
+			_keywords.Add(keywords[5].Replace("，", "，\r\n"));
+
+			tb_0_0.Text = _keywords[0];
+			tb_0_1.Text = _keywords[1];
+			tb_0_2.Text = _keywords[2];
+			tb_1_0.Text = _keywords[3];
+			tb_1_1.Text = _keywords[4];
+			tb_1_2.Text = _keywords[5];
 			UpdateData();
 		}
 
 		private void UpdateData()
 		{
-			tb_days.Text = File.ReadAllText(_keydays);
+			tb_days.Text = File.ReadAllText(_keydays_config);
 			lb_0_0.Items.Clear();
 			lb_0_1.Items.Clear();
 			lb_0_2.Items.Clear();
@@ -114,7 +155,7 @@ namespace MyDream
 			lb_1_1.Items.Clear();
 			lb_1_2.Items.Clear();
 			_dates.Clear();
-			string[] dates = File.ReadAllText(_keydays).Split("\r\n");
+			string[] dates = File.ReadAllText(_keydays_config).Split("\r\n");
 			foreach (string date in dates)
 			{
 				_dates.Add(date.Trim());
