@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyDream"
         mc:Ignorable="d"
-        Title="MainWindow" Background="Black" MinWidth="1920" MinHeight="1080">
+        Title="MainWindow" Background="Black" FontFamily="Verdana" MinWidth="960" WindowStartupLocation="CenterScreen" MinHeight="960">
     <Grid>
         <TabControl>
-            <TabItem Header="DATA" Background="Black" Foreground="#FF8000">
+            <TabItem Header="DATA" Background="Black" Foreground="#FF8000" FontSize="16" FontWeight="Bold" Width="100" Height="30">
                 <Grid>
-                    <local:DataAnalyze Margin="0"/>
+                    <local:Board Margin="0"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="LEVEL-2" Background="Black" Foreground="#FF8000">
+            <TabItem Header="LEVEL-2" Background="Black" Foreground="#FF8000" FontSize="16" FontWeight="Bold" Width="100" Height="30">
                 <Grid>
                     <local:Level2 Margin="0"/>
                 </Grid>

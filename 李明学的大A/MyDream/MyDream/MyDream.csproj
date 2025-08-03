@@ -2,15 +2,53 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resource\Icon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+    <PackageOutputPath>$(Solution)</PackageOutputPath>
+    <BaseOutputPath>E:\Blogs\李明学的大A</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>False</Optimize>
+	<DebugSymbols>true</DebugSymbols>  <!-- 生成pdb文件 -->
+    <DebugType>full</DebugType>        <!-- 调试信息类型 -->
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="MainWindow.xaml.cs" />
+    <Compile Include="Model\Common.cs" />
+    <Compile Include="Model\Record.cs" />
+    <Compile Include="Model\Records.cs" />
+    <Compile Include="Model\Records1D.cs" />
+    <Compile Include="Model\TradingDates.cs" />
+    <Compile Include="Model\Update.cs" />
+    <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="View\Board.xaml.cs" />
+    <Compile Include="View\Level2.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resource\Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UserControl\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="MainWindow.xaml" />
+    <Page Include="View\Board.xaml" />
+    <Page Include="View\Level2.xaml" />
   </ItemGroup>
 
 </Project>
