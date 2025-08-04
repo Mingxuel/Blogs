@@ -25,12 +25,25 @@
 				<Button Content="UPDATE MAIN STOCK LIST" Command="{Binding UpdateMainStockListClickCommand}" Margin="5"/>
 				<Button Content="DOWNLOAD HISTORY 1D" Command="{Binding DownloadHistory1DClickCommand}" Margin="5"/>
 				<Button Content="UPDATE HISTORY 1D" Command="{Binding UpdateHistory1DClickCommand}" Margin="5"/>
+				<Button Content="TEST" Command="{Binding TestClickCommand}" Margin="5"/>
 			</StackPanel>
 		</GroupBox>
-		<GroupBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Header="UPDATE" Margin="5" Foreground="White" FontSize="16">
+		<GroupBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Header="UPDATE" Margin="5" Foreground="White" FontSize="16">
 			<Grid Margin="5">
 				<TextBox Text="{Binding Output}" TextWrapping="Wrap" Background="Transparent" Foreground="White"/>
 			</Grid>
 		</GroupBox>
+		<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Items}" >
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" ItemWidth="3"/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Rectangle Width="1" Height="{Binding Count}" Fill="Red" Margin="1" VerticalAlignment="Bottom"/>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
 	</Grid>
 </UserControl>

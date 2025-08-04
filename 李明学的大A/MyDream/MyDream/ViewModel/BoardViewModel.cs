@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace MyDream
 {
@@ -17,6 +18,9 @@ namespace MyDream
 		private Dictionary<string, List<List<Record>>> data_1m = new Dictionary<string, List<List<Record>>>();
 		private Dictionary<string, List<Record>> data_1d = new Dictionary<string, List<Record>>();
 		private List<string> dates = new List<string>();
+
+		[ObservableProperty]
+		public ObservableCollection<Item> items = new ObservableCollection<Item>();
 
 		[ObservableProperty]
 		private string? output;
@@ -43,6 +47,15 @@ namespace MyDream
 		private async Task UpdateHistory1DClick()
 		{
 			Output = await Update.Instance.UpdateHistory1DAsync();
+		}
+
+		[RelayCommand]
+		private void TestClick()
+		{
+			for (int i = 0; i < 250; i++)
+			{
+				Items.Add(new Item() { Count = i });
+			}
 		}
 	}
 }
