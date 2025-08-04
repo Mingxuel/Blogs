@@ -19,10 +19,12 @@
 			<ColumnDefinition/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<GroupBox Grid.Row="0" Grid.Column="0" Header="UPDATE" Margin="5" Foreground="White" FontSize="16">
+		<GroupBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Header="UPDATE" Margin="5" Foreground="White" FontSize="16">
 			<StackPanel Orientation="Vertical" Margin="5">
 				<Button Content="UPDATE TRADING DATES" Command="{Binding UpdateTradingDatesClickCommand}" Margin="5"/>
 				<Button Content="UPDATE MAIN STOCK LIST" Command="{Binding UpdateMainStockListClickCommand}" Margin="5"/>
+				<Button Content="DOWNLOAD HISTORY 1D" Command="{Binding DownloadHistory1DClickCommand}" Margin="5"/>
+				<Button Content="UPDATE HISTORY 1D" Command="{Binding UpdateHistory1DClickCommand}" Margin="5"/>
 			</StackPanel>
 		</GroupBox>
 		<GroupBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Header="UPDATE" Margin="5" Foreground="White" FontSize="16">

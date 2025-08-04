@@ -32,5 +32,17 @@ namespace MyDream
 		{
 			Output = await Update.Instance.UpdateMainStockListAsync();
 		}
+
+		[RelayCommand]
+		private async Task DownloadHistory1DClick()
+		{
+			Output = await Update.Instance.DownloadHistory1DAsync();
+		}
+
+		[RelayCommand]
+		private async Task UpdateHistory1DClick()
+		{
+			Output = await Update.Instance.UpdateHistory1DAsync();
+		}
 	}
 }
