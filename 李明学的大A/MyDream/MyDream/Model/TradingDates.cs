@@ -10,9 +10,9 @@ namespace MyDream
 	public class TradingDates
 	{
 		private static TradingDates? _instance = null;
-		public static TradingDates? Instance { get => _instance == null ? _instance = new TradingDates() : _instance; }
+		public static TradingDates Instance { get => _instance == null ? _instance = new TradingDates() : _instance; }
 
-		private static string _dates = @"../../Miniqmt/src/Config/交易日";
+		private static string _dates = @"../../../../../Miniqmt/src/Config/交易日";
 		private List<string> _tradingDates = new List<string>();
 
 		private TradingDates()

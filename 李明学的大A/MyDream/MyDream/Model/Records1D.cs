@@ -10,10 +10,10 @@ namespace MyDream
 {
 	public class Records1D
 	{
-		private static string _config = @"../../Miniqmt/src/Config/Data/1D/";
+		private static string _config = @"../../../../../Miniqmt/src/Config/Data/1D/";
 
 		private static Records1D? _instance = null;
-		public static Records1D? Instance { get => _instance == null ? _instance = new Records1D() : _instance; }
+		public static Records1D Instance { get => _instance == null ? _instance = new Records1D() : _instance; }
 		private Dictionary<string, Records?> _records = new Dictionary<string, Records?>();
 
 		public Records? this[string stock_code]

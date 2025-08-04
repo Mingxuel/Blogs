@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,8 +21,8 @@ namespace MyDream
 	public partial class Level2 : UserControl
 	{
 		private const string _url = "https://www.iwencai.com/unifiedwap/result?w=";
-		private static string _keydays_config = @"../../Data/Config/KeyDays.config";
-		private static string _keywords_config = @"../../Data/Config/KeyWords.config";
+		private static string _keydays_config = @"../../../../../Data/Config/KeyDays.config";
+		private static string _keywords_config = @"../../../../../Data/Config/KeyWords.config";
 		private List<string> _dates = new List<string>();
 		private List<string> _keywords = new List<string>();
 
@@ -97,7 +95,7 @@ namespace MyDream
 					UseShellExecute = true
 				});
 			}
-			catch (Exception ex)
+			catch
 			{
 
 			}
