@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:MyDream"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280" Background="Black">
-    <Grid>
-        <Grid.RowDefinitions>
+	<UserControl.Resources>
+		<local:IntToColorConverter x:Key="IntToColorConverter"/>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
             <RowDefinition/>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -33,17 +36,87 @@
 				<TextBox Text="{Binding Output}" TextWrapping="Wrap" Background="Transparent" Foreground="White"/>
 			</Grid>
 		</GroupBox>
-		<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Items}" >
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" ItemWidth="3"/>
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<Rectangle Width="1" Height="{Binding Count}" Fill="Red" Margin="1" VerticalAlignment="Bottom"/>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+		<TabControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" Background="Black" Margin="0 8 0 0">
+			<TabItem Header="B3 DATA" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B3Data}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="Red" Margin="1" VerticalAlignment="Bottom"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="B4 DATA" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B4Data}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="Red" Margin="1" VerticalAlignment="Bottom"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="B5 DATA" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B5Data}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="Red" Margin="1" VerticalAlignment="Bottom"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="B4 RATIO" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B4Ratio}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="{Binding Count, Converter={StaticResource IntToColorConverter}}" Margin="1" VerticalAlignment="Bottom" ToolTip="Herllo"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="B5 RATIO" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B5Ratio}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="{Binding Count, Converter={StaticResource IntToColorConverter}}" Margin="1" VerticalAlignment="Bottom" ToolTip="Herllo"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
 	</Grid>
 </UserControl>

@@ -14,26 +14,26 @@ namespace MyDream
 
 		private static Records1D? _instance = null;
 		public static Records1D Instance { get => _instance == null ? _instance = new Records1D() : _instance; }
-		private Dictionary<string, Records?> _records = new Dictionary<string, Records?>();
+		public Dictionary<string, Records?> Records { get; } = new Dictionary<string, Records?>();
 
 		public Records? this[string stock_code]
 		{
-			get => _records[stock_code];
+			get => Records[stock_code];
 		}
 
 		private Records1D()
 		{
 			try
 			{
-				string[] files = Directory.GetFiles(_config, "*", SearchOption.TopDirectoryOnly);
+				var stock_codes = StockCodes.Instance.Codes;
 
-				foreach (string file in files)
+				foreach (var stock_code in stock_codes)
 				{
-					var stock_code = Path.GetFileName(file);
-					_records[stock_code] = new Records();
-					TradingDates.Instance?.GetTradingDates().ForEach(date => _records[stock_code]![date] = null);
+					Records[stock_code] = new Records();
+					TradingDates.Instance.Dates.ForEach(date => Records[stock_code]![date] = null);
 				}
 
+				string[] files = Directory.GetFiles(_config, "*", SearchOption.TopDirectoryOnly);
 				Parallel.ForEach(files, file =>
 				{
 					var lines = File.ReadLines(file).Skip(1);
@@ -41,7 +41,7 @@ namespace MyDream
 					{
 						var data = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 						var stock_code = Path.GetFileName(file);
-						_records[stock_code]![data[0]] = new Record
+						Records[stock_code]![data[0]] = new Record
 						{
 							Time = data[0],
 							Open = double.Parse(data[1]),
@@ -68,7 +68,7 @@ namespace MyDream
 			var pre_date = TradingDates.Instance?.PreDate(date, count);
 			if (pre_date == null) return null;
 
-			return _records[stock_code]?[pre_date];
+			return Records[stock_code]?[pre_date];
 		}
 
 		public Record? NextRecord(string stock_code, string date, int count = 1)
@@ -76,7 +76,7 @@ namespace MyDream
 			var next_date = TradingDates.Instance?.NextDate(date, count);
 			if (next_date == null) return null;
 
-			return _records[stock_code]?[next_date];
+			return Records[stock_code]?[next_date];
 		}
 	}
 }
