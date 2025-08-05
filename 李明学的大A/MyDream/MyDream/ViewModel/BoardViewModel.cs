@@ -36,6 +36,9 @@ namespace MyDream
 		public ObservableCollection<Ratio> b5Ratio = new ObservableCollection<Ratio>();
 
 		[ObservableProperty]
+		public ObservableCollection<Ratio> b5Win = new ObservableCollection<Ratio>();
+
+		[ObservableProperty]
 		private string? output;
 
 		[RelayCommand]
@@ -218,6 +221,59 @@ namespace MyDream
 
 			double value = (double)count / (double)B5Ratio.Count;
 			MessageBox.Show(value.ToString());
+
+			double money = 1000000.0;
+			B5Win.Clear();
+			foreach (var date in trading_dates)
+			{
+				Ratio item = new Ratio();
+				item.Time = date;
+				foreach (var code in stock_codes)
+				{
+					var next_date = TradingDates.Instance.NextDate(date);
+					if (next_date == null) continue;
+					var record_0 = records[code]?[next_date];
+					if (record_0 == null) continue;
+					var record_1 = records[code]?[date];
+					if (record_1 == null) continue;
+					var pre_date = TradingDates.Instance.PreDate(date);
+					if (pre_date == null) continue;
+					var record_2 = records[code]?[pre_date];
+					if (record_2 == null) continue;
+					pre_date = TradingDates.Instance.PreDate(pre_date);
+					if (pre_date == null) continue;
+					var record_3 = records[code]?[pre_date];
+					if (record_3 == null) continue;
+					pre_date = TradingDates.Instance.PreDate(pre_date);
+					if (pre_date == null) continue;
+					var record_4 = records[code]?[pre_date];
+					if (record_4 == null) continue;
+					pre_date = TradingDates.Instance.PreDate(pre_date);
+					if (pre_date == null) continue;
+					var record_5 = records[code]?[pre_date];
+					if (record_5 == null) continue;
+
+					if (record_5.Close < record_5.PreClose && record_4.Close > record_4.PreClose &&
+						record_3.Close > record_3.PreClose && record_2.Close > record_2.PreClose && record_1.Close > record_1.PreClose &&
+						!record_5.IsTop && !record_4.IsTop && !record_3.IsTop && !record_2.IsTop && !record_1.IsTop)
+					{
+						item.Value += ((record_0.Close - record_0.PreClose) / record_0.PreClose) * 100;
+						item.Count++;
+					}
+				}
+				if (item.Count > 0)
+				{
+					item.Value /= item.Count;
+				}
+				else
+				{
+					item.Value = 0;
+				}
+				money = money * (1 + item.Value / 100.0);
+				item.Count = (int)item.Value + 10;
+				B5Win.Add(item);
+			}
+			MessageBox.Show(money.ToString("F2"));
 		}
 	}
 }

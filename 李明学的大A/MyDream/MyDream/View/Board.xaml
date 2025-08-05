@@ -117,6 +117,22 @@
 					</ItemsControl>
 				</ScrollViewer>
 			</TabItem>
+			<TabItem Header="B5 WIN" FontSize="14" Width="100" Height="30" Foreground="#FF8000" FontWeight="Bold" Background="Black">
+				<ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+					<ItemsControl Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding B5Win}" >
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" ItemWidth="4"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Rectangle Width="2" Height="{Binding Count}" Fill="{Binding Count, Converter={StaticResource IntToColorConverter}}" Margin="1" VerticalAlignment="Bottom" ToolTip="Herllo"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
