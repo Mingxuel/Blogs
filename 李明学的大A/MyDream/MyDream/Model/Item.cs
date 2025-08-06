@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MyDream
 {
-	public class Item
-	{
-		public int Count { get => StockCodes.Count; }
-		public string? Time { get; set; }
-		public List<string> StockCodes { get; set; } = new List<string>();
-	}
+    public class Item
+    {
+        public int Count { get => StockCodes.Count; }
+        public string? Time { get; set; }
+        public List<string> StockCodes { get; set; } = new List<string>();
+    }
 }

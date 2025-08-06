@@ -8,16 +8,16 @@ using System.Windows.Controls;
 
 namespace MyDream
 {
-	/// <summary>
-	/// Board.xaml 的交互逻辑
-	/// </summary>
-	public partial class Board : UserControl
-	{
-		public Board()
-		{
-			InitializeComponent();
+    /// <summary>
+    /// Board.xaml 的交互逻辑
+    /// </summary>
+    public partial class Board : UserControl
+    {
+        public Board()
+        {
+            InitializeComponent();
 
-			this.DataContext = new BoardViewModel();
-		}
-	}
+            this.DataContext = new BoardViewModel();
+        }
+    }
 }

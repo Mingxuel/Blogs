@@ -7,54 +7,54 @@ using System.Threading.Tasks;
 
 namespace MyDream
 {
-	public class Update
-	{
-		private const string _file_update = @"../../../../../Miniqmt/src/UpdateForCSharp.py";
-		private const string _update_trading_dates = "--update_trading_dates";
-		private const string _update_main_stock_list = "--update_main_stock_list";
-		private const string _download_history_1d = "--download_history_1d";
-		private const string _update_history_1d = "--update_history_1d";
-		
+    public class Update
+    {
+        private const string _file_update = @"../../../../../Miniqmt/src/UpdateForCSharp.py";
+        private const string _update_trading_dates = "--update_trading_dates";
+        private const string _update_main_stock_list = "--update_main_stock_list";
+        private const string _download_history_1d = "--download_history_1d";
+        private const string _update_history_1d = "--update_history_1d";
+        
 
 
-		private static Update? _instance = null;
-		public static Update Instance { get => _instance == null ? _instance = new Update() : _instance; }
-		private Update() { }
+        private static Update? _instance = null;
+        public static Update Instance { get => _instance == null ? _instance = new Update() : _instance; }
+        private Update() { }
 
-		public async Task<string?> UpdateTradingDatesAsync()
-		{
-			return await Task.Run(() => Call(_update_trading_dates));
-		}
+        public async Task<string?> UpdateTradingDatesAsync()
+        {
+            return await Task.Run(() => Call(_update_trading_dates));
+        }
 
-		public async Task<string?> UpdateMainStockListAsync()
-		{
-			return await Task.Run(() => Call(_update_main_stock_list));
-		}
+        public async Task<string?> UpdateMainStockListAsync()
+        {
+            return await Task.Run(() => Call(_update_main_stock_list));
+        }
 
-		public async Task<string?> DownloadHistory1DAsync()
-		{
-			return await Task.Run(() => Call(_download_history_1d));
-		}
+        public async Task<string?> DownloadHistory1DAsync()
+        {
+            return await Task.Run(() => Call(_download_history_1d));
+        }
 
-		public async Task<string?> UpdateHistory1DAsync()
-		{
-			return await Task.Run(() => Call(_update_history_1d));
-		}
+        public async Task<string?> UpdateHistory1DAsync()
+        {
+            return await Task.Run(() => Call(_update_history_1d));
+        }
 
-		private string? Call(string param)
-		{
-			var start_info = new ProcessStartInfo
-			{
-				FileName = "python",
-				Arguments = string.Format("{0} {1}", _file_update, param),
-				RedirectStandardOutput = true,
-				UseShellExecute = false,
-				CreateNoWindow = true
-			};
-			var process = Process.Start(start_info);
-			var output = process?.StandardOutput.ReadToEnd();
-			process?.WaitForExit();
-			return output ?? null;
-		}
-	}
+        private string? Call(string param)
+        {
+            var start_info = new ProcessStartInfo
+            {
+                FileName = "python",
+                Arguments = string.Format("{0} {1}", _file_update, param),
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            var process = Process.Start(start_info);
+            var output = process?.StandardOutput.ReadToEnd();
+            process?.WaitForExit();
+            return output ?? null;
+        }
+    }
 }

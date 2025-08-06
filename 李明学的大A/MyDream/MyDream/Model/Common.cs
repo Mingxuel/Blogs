@@ -3,51 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MyDream
 {
-	public class Common
-	{
-		private static Common? _instance = null;
-		public static Common? Instance { get =>  _instance == null ? _instance = new Common() : _instance; }
-		private Common() { }
+    public class Common
+    {
+        public static int Compare(string a, string b)
+        {
+            double da = double.Parse(a);
+            double db = double.Parse(b);
+            return da.CompareTo(db);
+        }
 
-		public string? MA5(string stockCode, string date)
-		{
-			return MA(stockCode, date, 5);	
-		}
+        public static Record? PreRecord(string stock_code, string date, int count = 1)
+        {
+            var pre_date = TradingDates.Instance.PreDate(date);
+            while(pre_date != null)
+            {
+                var record = Records1D.Instance.Records[stock_code]?[pre_date];
+                if (record != null)
+                {
+                    count--;
+                    if (count == 0) return record;
+                }
+                pre_date = TradingDates.Instance.PreDate(pre_date);
+            }
 
-		public string? MA10(string stockCode, string date)
-		{
-			return MA(stockCode, date, 10);
-		}
+            return null;
+        }
 
-		private string? MA(string stockCode, string date, int cycle = 5)
-		{
-			if (!TradingDates.Instance.Dates.Contains(date)) return null;
-			if (!StockCodes.Instance.Codes.Contains(stockCode)) return null;
-
-			Record? record = Records1D.Instance.Records[stockCode]?[date];
-			if (record == null) return null;
-
-			int count = 0;
-			string? pre_date = null;
-			double total_price = double.Parse(record.Close);
-			while (count < cycle - 1)
-			{
-				pre_date = TradingDates.Instance.PreDate(date);
-				if (pre_date == null) return null;
-				record = Records1D.Instance.Records[stockCode]?[pre_date];
-				if (record == null) continue;
-				count++;
-				total_price += double.Parse(record.Close);
-			}
-			return ConvertToString(total_price / cycle);
-		}
-
-		private string ConvertToString(double price)
-		{
-			return Math.Round(Math.Round(price, 3), 2).ToString();
-		}
-	}
+        public static Record? NextRecord(string stock_code, string date, int count = 1)
+        {
+            var next_date = TradingDates.Instance.NextDate(date);
+            while (next_date != null)
+            {
+                var record = Records1D.Instance.Records[stock_code]?[next_date];
+                if (record != null)
+                {
+                    count--;
+                    if (count == 0) return record;
+                }
+                next_date = TradingDates.Instance.NextDate(next_date);
+            }
+            return null;
+        }
+    }
 }
