@@ -44,15 +44,15 @@ namespace MyDream
 						Records[stock_code]![data[0]] = new Record
 						{
 							Time = data[0],
-							Open = double.Parse(data[1]),
-							High = double.Parse(data[2]),
-							Low = double.Parse(data[3]),
-							Close = double.Parse(data[4]),
-							Volume = double.Parse(data[5]),
-							Amount = double.Parse(data[6]),
-							SettelementPrice = double.Parse(data[7]),
-							OpenInterest = double.Parse(data[8]),
-							PreClose = double.Parse(data[9])
+							Open = data[1],
+							High = data[2],
+							Low = data[3],
+							Close = data[4],
+							Volume = data[5],
+							Amount = data[6],
+							SettelementPrice = data[7],
+							OpenInterest = data[8],
+							PreClose = data[9]
 						};
 					}
 				});
